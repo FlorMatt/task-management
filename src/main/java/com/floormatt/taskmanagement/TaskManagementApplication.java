@@ -1,31 +1,46 @@
 package com.floormatt.taskmanagement;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 public class TaskManagementApplication extends Application {
 
-    public static void main(String[] args) {
-        //SpringApplication.run(TaskManagementApplication.class, args);
+    private ConfigurableApplicationContext springContext;
+    private Parent root;
 
+    public static void main(String[] args) {
         //start JavaFX
         launch(args);
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void init() throws Exception {
+        springContext = new SpringApplicationBuilder().sources(TaskManagementApplication.class).run();
 
-        //load the inital FXML
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/floormatt/taskmanagement/auth/login.fxml"));
-        Parent root = loader.load();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/auth/login.fxml"));
+        loader.setControllerFactory(springContext::getBean);
+        root = loader.load();
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("Task Management Login");
         primaryStage.show();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        springContext.close();
+        Platform.exit();
     }
 
 }

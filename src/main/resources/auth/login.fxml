@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -7,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.floormatt.taskmanagement.auth.LoginController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.floormatt.taskmanagement.auth.LoginController">
    <children>
       <Label id="lbl_taskManagementLogin" fx:id="lbl_taskManagementLogin" alignment="CENTER" text="Task Management Login">
          <font>
@@ -17,6 +18,9 @@
       <TextField id="fld_username" fx:id="txtfld_lg_username" promptText="Username" />
       <PasswordField id="fld_password" fx:id="pwfld_lg_password" promptText="Password" />
       <Button id="btn_login" fx:id="btn_login" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
-      <Label id="lbl_loginFooter" fx:id="lbl_loginFooter" onMouseClicked="#switchToRegister" styleClass="footer-label" text="No account? Register for one here." />
+      <Label id="lbl_loginFooter" fx:id="lbl_loginFooter" onMouseClicked="#switchToRegister" styleClass="footer-label" text="No account? Register for one here.">
+         <cursor>
+            <Cursor fx:constant="CLOSED_HAND" />
+         </cursor></Label>
    </children>
 </VBox>
