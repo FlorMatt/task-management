@@ -2,6 +2,7 @@ package com.floormatt.taskmanagement.auth;
 
 import com.floormatt.taskmanagement.exception.FxExceptionHandler;
 import com.floormatt.taskmanagement.models.User;
+import com.floormatt.taskmanagement.util.ControllerFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,20 +14,22 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoginController {
 
+    //fxml injected components
     @FXML private TextField txtfld_lg_username;
     @FXML private PasswordField pwfld_lg_password;
     @FXML private Button btn_login;
     @FXML private Label lbl_loginFooter;
 
-    //private final AuthService authService = new AuthService();
-
+    //spring-managed dependencies
     private final AuthService authService;
     private final FxExceptionHandler exceptionHandler;
+    private final ControllerFactory controllerFactory;
 
     @Autowired
-    public LoginController(AuthService authService, FxExceptionHandler exceptionHandler) {
+    public LoginController(AuthService authService, FxExceptionHandler exceptionHandler, ControllerFactory controllerFactory) {
         this.authService = authService;
         this.exceptionHandler = exceptionHandler;
+        this.controllerFactory = controllerFactory;
     }
 
     @FXML
@@ -38,12 +41,31 @@ public class LoginController {
             return; //added to stop execution
         }
 
-        if (authService.login(user)) {
-            showAlert("Login Successful", "Login was successful", Alert.AlertType.CONFIRMATION);
-            //TODO: Switch to task list screen
-        } else {
-            System.out.println("Login Failed");
-            showAlert("Login Failed", "Invalid username or password", Alert.AlertType.ERROR);
+        try {
+            if (authService.login(user)) {
+                showAlert("Login Success", "Login was successful", Alert.AlertType.CONFIRMATION);
+                //TODO: Switch to task list screen
+            } else {
+                showAlert("Login Failed", "Invalid username or password", Alert.AlertType.ERROR);
+            }
+        } catch (Exception e) {
+            exceptionHandler.handleException(e);
+        }
+    }
+
+    @FXML
+    private void switchToRegister() {
+        try {
+            Stage stage = (Stage) lbl_loginFooter.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/auth/register.fxml"));
+
+            //use the ControllerFactory for spring-aware controller creation
+            loader.setControllerFactory(controllerFactory::create);
+
+            stage.setScene(new Scene(loader.load()));
+            stage.setTitle("Task Management Register");
+        } catch (Exception e) {
+            exceptionHandler.handleException(e);
         }
     }
 
@@ -53,19 +75,4 @@ public class LoginController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
-    @FXML
-    private void switchToRegister() {
-        try {
-            Stage stage = (Stage) lbl_loginFooter.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/auth/register.fxml"));
-            loader.setControllerFactory(authService.getApplicationContext()::getBean);
-
-            stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Task Management Register");
-        } catch (Exception e) {
-            exceptionHandler.handleException(e);
-        }
-    }
-
 }
