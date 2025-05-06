@@ -1,4 +1,4 @@
-package com.floormatt.taskmanagement.models;
+package com.floormatt.taskmanagement.auth;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

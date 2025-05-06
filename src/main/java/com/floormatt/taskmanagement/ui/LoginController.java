@@ -1,8 +1,7 @@
-package com.floormatt.taskmanagement.auth;
+package com.floormatt.taskmanagement.ui;
 
-import com.floormatt.taskmanagement.exception.FxExceptionHandler;
-import com.floormatt.taskmanagement.models.User;
-import com.floormatt.taskmanagement.util.ControllerFactory;
+import com.floormatt.taskmanagement.auth.AuthService;
+import com.floormatt.taskmanagement.auth.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -59,7 +58,7 @@ public class LoginController {
     private void switchToRegister() {
         try {
             Stage stage = (Stage) lbl_loginFooter.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/auth/register.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/register.fxml"));
 
             //use the ControllerFactory for spring-aware controller creation
             loader.setControllerFactory(controllerFactory::create);

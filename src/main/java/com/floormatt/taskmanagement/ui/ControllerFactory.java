@@ -1,4 +1,4 @@
-package com.floormatt.taskmanagement.util;
+package com.floormatt.taskmanagement.ui;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;

@@ -25,7 +25,7 @@ public class TaskManagementApplication extends Application {
     public void init() throws Exception {
         springContext = new SpringApplicationBuilder().sources(TaskManagementApplication.class).run();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/auth/login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/login.fxml"));
         loader.setControllerFactory(springContext::getBean);
         root = loader.load();
     }

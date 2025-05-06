@@ -1,4 +1,4 @@
-package com.floormatt.taskmanagement.exception;
+package com.floormatt.taskmanagement.ui;
 
 import javafx.scene.control.Alert;
 import org.springframework.stereotype.Component;
