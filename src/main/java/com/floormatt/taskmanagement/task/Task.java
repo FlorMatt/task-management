@@ -41,6 +41,20 @@ public class Task {
     private User user;
 
     public enum TaskStatus {
-        ALL, TODO, In_PROGRESS, COMPLETED
+        ALL("All"),
+        TODO("To Do"),
+        IN_PROGRESS("In Progress"),
+        COMPLETED("Completed");
+
+        private final String displayName;
+
+        TaskStatus(String displayName) {
+            this.displayName = displayName;
+        }
+
+        @Override
+        public String toString() {
+            return displayName;
+        }
     }
 }

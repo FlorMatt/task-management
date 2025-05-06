@@ -8,18 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox
-        alignment="CENTER"
-        maxHeight="-Infinity"
-        maxWidth="-Infinity"
-        minHeight="-Infinity"
-        minWidth="-Infinity"
-        prefHeight="400.0"
-        prefWidth="600.0"
-        xmlns="http://javafx.com/javafx/21"
-        xmlns:fx="http://javafx.com/fxml/1"
-        fx:controller="com.floormatt.taskmanagement.ui.RegisterController"
->
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.floormatt.taskmanagement.ui.RegisterController">
    <children>
       <Label fx:id="lbl_taskManagementRegister" text="Task Management Register">
          <font>
@@ -28,7 +17,7 @@
       </Label>
       <TextField id="txtfld_reg_username" fx:id="txtfld_reg_username" promptText="Username" />
       <PasswordField id="pwfld_reg_password" fx:id="pwfld_reg_password" promptText="Password" />
-      <Button id="btn_register" fx:id="btn_register" mnemonicParsing="false" onAction="#handleRegister" text="Register" />
+      <Button id="btn_register" fx:id="btn_register" defaultButton="true" mnemonicParsing="false" onAction="#handleRegister" text="Register" />
       <Label id="lbl_registerFooter" fx:id="lbl_registerFooter" onMouseClicked="#switchToLogin" text="Already have an account? Login for one here.">
          <cursor>
             <Cursor fx:constant="CLOSED_HAND" />

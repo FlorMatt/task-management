@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -20,7 +19,6 @@ public class RegisterController {
     //fxml injected components
     @FXML private TextField txtfld_reg_username;
     @FXML private PasswordField pwfld_reg_password;
-    @FXML private Button btn_register;
     @FXML private Label lbl_registerFooter;
 
     //spring-managed dependencies
@@ -71,7 +69,7 @@ public class RegisterController {
             loader.setControllerFactory(controllerFactory::create);
 
             stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Task Management Login");
+            stage.setTitle("Task Management Application");
         } catch (Exception e) {
             exceptionHandler.handleException(e);
         }

@@ -16,7 +16,6 @@ public class LoginController {
     //fxml injected components
     @FXML private TextField txtfld_lg_username;
     @FXML private PasswordField pwfld_lg_password;
-    @FXML private Button btn_login;
     @FXML private Label lbl_loginFooter;
 
     //spring-managed dependencies
@@ -66,7 +65,7 @@ public class LoginController {
             loader.setControllerFactory(controllerFactory::create);
 
             stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Task Management Register");
+            stage.setTitle("Task Management Application");
         } catch (Exception e) {
             exceptionHandler.handleException(e);
         }
@@ -82,7 +81,7 @@ public class LoginController {
             loader.setControllerFactory(controllerFactory::create);
 
             stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Task Management Dashboard");
+            stage.setTitle("Task Management Application");
         } catch (Exception e) {
             e.printStackTrace();
             exceptionHandler.handleException(e);

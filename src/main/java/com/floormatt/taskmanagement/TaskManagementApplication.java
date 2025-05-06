@@ -33,7 +33,7 @@ public class TaskManagementApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setScene(new Scene(root));
-        primaryStage.setTitle("Task Management Login");
+        primaryStage.setTitle("Task Management Application");
         primaryStage.show();
     }
 
