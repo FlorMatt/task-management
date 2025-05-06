@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.floormatt.taskmanagement.ui.TaskListController">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="lbl_taskManagementDashBoard" alignment="CENTER" prefHeight="25.0" text="Task Management Dashboard">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl_helloUser" text="Hello:" />
+            <Button fx:id="btn_logOut" mnemonicParsing="false" onAction="#handleLogOut" text="Logout" />
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="btn_addNewTask" mnemonicParsing="false" onAction="#showTaskForm" text="Add New Task" />
+            <ComboBox fx:id="cbx_statusFilter" prefWidth="150.0" />
+            <Button fx:id="btn_refreshList" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#refreshTaskList" text="Refresh" />
+         </children>
+      </HBox>
+      <TableView prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="tc_taskName" prefWidth="75.0" text="Task Name" />
+          <TableColumn fx:id="tc_dueDate" prefWidth="75.0" text="Due Date" />
+            <TableColumn fx:id="tc_status" prefWidth="75.0" text="Status" />
+           <TableColumn fx:id="tc_actions" prefWidth="75.0" text="Actions">
+              <cellValueFactory>
+                 <PropertyValueFactory property="dummy" />
+              </cellValueFactory>
+           </TableColumn>
+        </columns>
+      </TableView>
+   </children>
+</VBox>

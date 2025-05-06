@@ -45,7 +45,9 @@ public class LoginController {
         try {
             if (authService.login(user)) {
                 showAlert("Login Success", "Login was successful", Alert.AlertType.CONFIRMATION);
-                //TODO: Switch to task list screen
+
+                //go to the task list to start working
+                switchToTaskList();
             } else {
                 showAlert("Login Error", "Invalid username or password", Alert.AlertType.ERROR);
             }
@@ -66,6 +68,23 @@ public class LoginController {
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Task Management Register");
         } catch (Exception e) {
+            exceptionHandler.handleException(e);
+        }
+    }
+
+    @FXML
+    private void switchToTaskList() {
+        try {
+            Stage stage = (Stage) lbl_loginFooter.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/task-list.fxml"));
+
+            //use the ControllerFactory for spring-aware controller creation
+            loader.setControllerFactory(controllerFactory::create);
+
+            stage.setScene(new Scene(loader.load()));
+            stage.setTitle("Task Management Dashboard");
+        } catch (Exception e) {
+            e.printStackTrace();
             exceptionHandler.handleException(e);
         }
     }
