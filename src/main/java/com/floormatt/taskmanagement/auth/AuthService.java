@@ -32,7 +32,7 @@ public class AuthService {
 
     //attempt to log in by matching a raw password against the stored hash
     public boolean login(User user) {
-        return userRepository.findByUsername(user.getUsername()).map(storedUser -> passwordEncoder.matches(storedUser.getPassword(), user.getPassword())).orElse(false);
+        return userRepository.findByUsername(user.getUsername()).map(storedUser -> passwordEncoder.matches(user.getPassword(), storedUser.getPassword())).orElse(false);
     }
 
     //register a new user if valid and username is not already taken

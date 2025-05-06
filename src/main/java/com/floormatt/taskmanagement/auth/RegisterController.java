@@ -38,7 +38,9 @@ public class RegisterController {
 
     @FXML
     private void handleRegister() {
-        User newUser = new User(txtfld_reg_username.getText(), pwfld_reg_password.getText());
+        User newUser = new User();
+        newUser.setUsername(txtfld_reg_username.getText());
+        newUser.setPassword(pwfld_reg_password.getText());
 
         if (txtfld_reg_username.getText().isEmpty() || pwfld_reg_password.getText().isEmpty()) {
             showAlert("Registration Error", "The Username and Password fields cannot be empty.", Alert.AlertType.ERROR);
@@ -52,7 +54,7 @@ public class RegisterController {
                 //go to log in after registering
                 switchToLogin();
             } else {
-                showAlert("Registration Failed", "Username already exists", Alert.AlertType.ERROR);
+                showAlert("Registration Error", "Username already exists", Alert.AlertType.ERROR);
             }
         } catch (Exception e) {
             exceptionHandler.handleException(e);

@@ -34,7 +34,9 @@ public class LoginController {
 
     @FXML
     private void handleLogin() {
-        User user = new User(txtfld_lg_username.getText(), pwfld_lg_password.getText());
+        User user = new User();
+        user.setUsername(txtfld_lg_username.getText());
+        user.setPassword(pwfld_lg_password.getText());
 
         if (txtfld_lg_username.getText().isEmpty() || pwfld_lg_password.getText().isEmpty()) {
             showAlert("Login Error", "The Username and Password fields cannot be empty.", Alert.AlertType.ERROR);
@@ -46,7 +48,7 @@ public class LoginController {
                 showAlert("Login Success", "Login was successful", Alert.AlertType.CONFIRMATION);
                 //TODO: Switch to task list screen
             } else {
-                showAlert("Login Failed", "Invalid username or password", Alert.AlertType.ERROR);
+                showAlert("Login Error", "Invalid username or password", Alert.AlertType.ERROR);
             }
         } catch (Exception e) {
             exceptionHandler.handleException(e);
