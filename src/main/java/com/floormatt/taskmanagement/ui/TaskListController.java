@@ -76,7 +76,7 @@ public class TaskListController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/login.fxml"));
             loader.setControllerFactory(controllerFactory::create);
             stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Task Management Login");
+            stage.setTitle("Task Management Application");
             authService.logout();
         } catch (Exception e) {
             exceptionHandler.handleException(e);

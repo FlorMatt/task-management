@@ -1,6 +1,7 @@
 package com.floormatt.taskmanagement.auth;
 
 import jakarta.annotation.PostConstruct;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -11,6 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class AuthService {
+
+    //get currently authenticated user
+    @Getter
+    private User currentUser;
 
     //srping-managed dependencies
     private final UserRepository userRepository;
@@ -30,8 +35,23 @@ public class AuthService {
     }
 
     //attempt to log in by matching a raw password against the stored hash
+    @Transactional(readOnly = true)
     public boolean login(User user) {
-        return userRepository.findByUsername(user.getUsername()).map(storedUser -> passwordEncoder.matches(user.getPassword(), storedUser.getPassword())).orElse(false);
+        boolean success = userRepository.findByUsername(user.getUsername()).map(storedUser -> passwordEncoder.matches(user.getPassword(), storedUser.getPassword())).orElse(false);
+
+        if (success) {
+            this.currentUser = userRepository.findByUsername(user.getUsername()).get();
+            log.info("User Logged in: " + user.getUsername());
+        }
+        return success;
+    }
+
+    //log out current user
+    public void logout() {
+        if (currentUser != null) {
+            log.info("User logged out: {}", currentUser.getUsername());
+            this.currentUser = null;
+        }
     }
 
     //register a new user if valid and username is not already taken
