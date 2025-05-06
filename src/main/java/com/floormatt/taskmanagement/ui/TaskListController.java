@@ -1,6 +1,7 @@
 package com.floormatt.taskmanagement.ui;
 
 import com.floormatt.taskmanagement.auth.AuthService;
+import com.floormatt.taskmanagement.auth.User;
 import com.floormatt.taskmanagement.task.Task;
 import com.floormatt.taskmanagement.task.TaskService;
 import javafx.collections.FXCollections;
@@ -49,6 +50,10 @@ public class TaskListController {
 
     @FXML
     public void initialize() {
+
+        //display the current user
+        displayCurrentUser();
+
         // Set up regular columns
         tc_taskName.setCellValueFactory(new PropertyValueFactory<>("title"));
         tc_dueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
@@ -63,6 +68,16 @@ public class TaskListController {
         cbx_statusFilter.setItems(statusOptions);
         cbx_statusFilter.getSelectionModel().selectFirst();
 
+    }
+
+    private void displayCurrentUser() {
+        User currentUser = authService.getCurrentUser();
+        if (currentUser != null) {
+            lbl_helloUser.setText("Hello, " + currentUser.getUsername() + "!");
+        } else {
+            lbl_helloUser.setText("You are not logged in!");
+            handleLogOut();
+        }
     }
 
     private void editTask(Task task) {}
