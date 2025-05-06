@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="20.0" style="-fx-padding: 20;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.floormatt.taskmanagement.ui.TaskFormController">
+   <children>
+      <Label fx:id="lbl_addEditTask" alignment="CENTER" text="Add/Edit Task" />
+      <GridPane>
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="lbl_taskName" text="Task Name" />
+            <Label fx:id="lbl_dueDate" text="Due Date" GridPane.rowIndex="1" />
+            <Label fx:id="lbl_category" text="Category" GridPane.rowIndex="2" />
+            <Label fx:id="lbl_status" text="Status" GridPane.rowIndex="3" />
+            <TextField fx:id="txtfld_taskName" promptText="Task Name" GridPane.columnIndex="1" />
+            <DatePicker fx:id="dtp_dueDate" promptText="Due Date" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtfld_category" promptText="Category" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="cbx_status" prefWidth="150.0" promptText="Status" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="btn_save" mnemonicParsing="false" onAction="#saveTask" text="Save" />
+            <Button fx:id="btn_cancel" mnemonicParsing="false" onAction="#cancelTaskForm" text="Cancel" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
