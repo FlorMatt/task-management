@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.floormatt.taskmanagement.ui.TaskListController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.floormatt.taskmanagement.ui.TaskListController">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
@@ -35,9 +35,6 @@
           <TableColumn fx:id="tc_dueDate" prefWidth="75.0" text="Due Date" />
             <TableColumn fx:id="tc_status" prefWidth="75.0" text="Status" />
            <TableColumn fx:id="tc_actions" prefWidth="75.0" text="Actions">
-              <cellValueFactory>
-                 <PropertyValueFactory property="dummy" />
-              </cellValueFactory>
            </TableColumn>
         </columns>
       </TableView>
