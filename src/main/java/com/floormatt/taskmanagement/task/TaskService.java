@@ -1,19 +1,26 @@
 package com.floormatt.taskmanagement.task;
 
 import com.floormatt.taskmanagement.auth.User;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class TaskService {
 
     //srping-managed dependencies
     private final TaskRepository taskRepository;
+
+    @PostConstruct
+    @Transactional
+    public void registerTestTask(Task task, User user) {}
 
     @Transactional
     public Task createTask(Task task, User user) {

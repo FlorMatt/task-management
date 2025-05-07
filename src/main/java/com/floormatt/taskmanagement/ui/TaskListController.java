@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -55,7 +56,7 @@ public class TaskListController {
         displayCurrentUser();
 
         // Set up regular columns
-        tc_taskName.setCellValueFactory(new PropertyValueFactory<>("title"));
+        tc_taskName.setCellValueFactory(new PropertyValueFactory<>("taskName"));
         tc_dueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
         tc_status.setCellValueFactory(new PropertyValueFactory<>("status"));
 
@@ -67,6 +68,37 @@ public class TaskListController {
 
         cbx_statusFilter.setItems(statusOptions);
         cbx_statusFilter.getSelectionModel().selectFirst();
+
+        //set up actions column
+        tc_actions.setCellValueFactory(param -> new TableCell<>() {
+            private final Button editButton = new Button("Edit");
+            private final Button deleteButton = new Button("Delete");
+
+            {
+                editButton.setOnAction(e -> {
+                    Task task = getTableView().getItems().get(getIndex());
+                    editTask(task);
+                });
+
+                deleteButton.setOnAction(e -> {
+                    Task task = getTableView().getItems().get(getIndex());
+                    deleteTask(task);
+                });
+            }
+
+            private void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    HBox buttons = new HBox(5, editButton, deleteButton);
+                    setGraphic(buttons);
+                }
+            }
+        });
+
+        //load tasks for current user
+        refreshTaskList();
 
     }
 
@@ -99,7 +131,19 @@ public class TaskListController {
     }
 
     @FXML
-    private void showTaskForm() {}
+    private void showTaskForm() {
+        try {
+            Stage stage = (Stage) btn_addNewTask.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/taskForm.fxml"));
+
+            loader.setControllerFactory(controllerFactory::create);
+
+            stage.setScene(new Scene(loader.load()));
+            stage.setTitle("Task Management Application");
+        } catch (Exception e) {
+            exceptionHandler.handleException(e);
+        }
+    }
 
     @FXML
     private void refreshTaskList() {}
