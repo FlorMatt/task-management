@@ -1,0 +1,51 @@
+/* Main application styles */
+.root {
+    -fx-font-family: "Arial";
+    -fx-base: #ececec;
+}
+
+/* Table styles */
+.table-view {
+    -fx-background-color: white;
+    -fx-table-cell-border-color: transparent;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #d0e3ff;
+    -fx-table-cell-border-color: #a8c7ff;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #f0f0f0;
+}
+
+/* Button styles */
+.button {
+    -fx-background-radius: 4;
+    -fx-padding: 5 10 5 10;
+}
+
+.button:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 1);
+}
+
+/* Alert/dialog styles */
+.dialog-pane {
+    -fx-background-color: white;
+}
+
+/* Context menu styles */
+.context-menu {
+    -fx-background-color: white;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 1);
+}
+
+.menu-item {
+    -fx-padding: 5 10 5 10;
+}
+
+.menu-item:hover {
+    -fx-background-color: #e0e0e0;
+}
